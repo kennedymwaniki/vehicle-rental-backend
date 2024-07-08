@@ -10,8 +10,8 @@ import {
 
 export const vehicleSpecsRouter = new Hono();
 
-vehicleSpecsRouter.get("/vehicle-specs", getVehicleSpecs);
-vehicleSpecsRouter.get("/vehicle-specs/:id", getVehicleSpec);
-vehicleSpecsRouter.post("/vehicle-specs", createVehicleSpec);
-vehicleSpecsRouter.put("/vehicle-specs/:id", updateVehicleSpec);
-vehicleSpecsRouter.delete("/vehicle-specs/:id", deleteVehicleSpec);
+vehicleSpecsRouter.get("/vehicleSpecs", getVehicleSpecs);
+vehicleSpecsRouter.get("/vehicleSpecs/:id", getVehicleSpec);
+vehicleSpecsRouter.post("/vehicleSpecs", createVehicleSpec);
+vehicleSpecsRouter.put("/vehicleSpecs/:id", updateVehicleSpec);
+vehicleSpecsRouter.delete("/vehicleSpecs/:id", deleteVehicleSpec);
