@@ -14,8 +14,13 @@ export const getPayments = async (c: Context) => {
   return c.json(data);
 };
 
+// In paymentsController.ts
+
 export const getPayment = async (c: Context) => {
   const id = parseInt(c.req.param("id"));
+  if (isNaN(id)) {
+    return c.json({ error: "Invalid ID" }, 400); // Return a 400 error for invalid ID
+  }
   console.log(id);
   const payment = await getPaymentById(id);
   if (!payment) {
@@ -42,21 +47,36 @@ const paymentService = createPaymentService();
 
 export const createPayment = {
   async createCheckoutSession(c: Context) {
-    const { bookingId, amount } = await c.req.json();
-    const session = await paymentService.createCheckoutSession(
-      bookingId,
-      amount
-    );
-    return c.json({ sessionId: session.id });
-  },
+    try {
+      const { bookingId, amount } = await c.req.json();
+      console.log(
+        `Creating checkout session for bookingId: ${bookingId}, amount: ${amount}`
+      );
 
+      const session = await paymentService.createCheckoutSession(
+        bookingId,
+        amount
+      );
+
+      return c.json({ sessionId: session.id });
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+      return c.json(
+        { success: false, error: "Failed to create checkout session" },
+        500
+      );
+    }
+  },
   //testing of checkout session
 
   async testCreateCheckoutSession(c: Context) {
     try {
       // For testing, we'll use hardcoded values
-      const bookingId = 1;
+      const bookingId = 3;
       const amount = 100; // $100
+      console.log(
+        `Test creating checkout session for bookingId: ${bookingId}, amount: ${amount}`
+      );
 
       const session = await paymentService.createCheckoutSession(
         bookingId,
@@ -77,7 +97,7 @@ export const createPayment = {
     }
   },
 
-  ///end of
+  ///end of test
 
   async handleWebhook(c: Context) {
     const sig = c.req.header("stripe-signature");

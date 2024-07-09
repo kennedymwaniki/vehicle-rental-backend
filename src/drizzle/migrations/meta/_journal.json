@@ -29,6 +29,13 @@
       "when": 1720082854790,
       "tag": "0003_heavy_dark_beast",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1720521270091,
+      "tag": "0004_lame_polaris",
+      "breakpoints": true
     }
   ]
 }

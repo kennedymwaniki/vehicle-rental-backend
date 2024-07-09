@@ -130,3 +130,11 @@ Content-Type: application/json
     "email": "kennedymwaniki089@gmail.com",
     "password": "12345678"
 }
+
+
+
+
+
+///testing stripe
+###
+GET http://localhost:3000/api/payments/test-checkout-session
