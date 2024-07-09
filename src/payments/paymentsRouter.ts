@@ -21,3 +21,7 @@ paymentsRouter.post(
   createPayment.createCheckoutSession
 );
 paymentsRouter.post("/webhook", createPayment.handleWebhook);
+paymentsRouter.get(
+  "/test-checkout-session",
+  createPayment.testCreateCheckoutSession
+);

@@ -7,7 +7,6 @@ import {
   updatePaymentService,
 } from "./paymentsService";
 
-
 import { type Context } from "hono";
 
 export const getPayments = async (c: Context) => {
@@ -39,18 +38,49 @@ export const getPayment = async (c: Context) => {
 //   }
 // };
 
-
 const paymentService = createPaymentService();
 
 export const createPayment = {
   async createCheckoutSession(c: Context) {
     const { bookingId, amount } = await c.req.json();
-    const session = await paymentService.createCheckoutSession(bookingId, amount);
+    const session = await paymentService.createCheckoutSession(
+      bookingId,
+      amount
+    );
     return c.json({ sessionId: session.id });
   },
 
+  //testing of checkout session
+
+  async testCreateCheckoutSession(c: Context) {
+    try {
+      // For testing, we'll use hardcoded values
+      const bookingId = 1;
+      const amount = 100; // $100
+
+      const session = await paymentService.createCheckoutSession(
+        bookingId,
+        amount
+      );
+
+      return c.json({
+        success: true,
+        sessionId: session.id,
+        checkoutUrl: session.url,
+      });
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+      return c.json(
+        { success: false, error: "Failed to create checkout session" },
+        500
+      );
+    }
+  },
+
+  ///end of
+
   async handleWebhook(c: Context) {
-    const sig = c.req.header('stripe-signature');
+    const sig = c.req.header("stripe-signature");
     const rawBody = await c.req.raw.text();
 
     try {
@@ -60,7 +90,7 @@ export const createPayment = {
         process.env.STRIPE_WEBHOOK_SECRET!
       );
 
-      if (event.type === 'checkout.session.completed') {
+      if (event.type === "checkout.session.completed") {
         const session = event.data.object;
         await paymentService.handleSuccessfulPayment(session.id);
       }
@@ -68,19 +98,10 @@ export const createPayment = {
       return c.json({ received: true });
     } catch (err) {
       console.error(err);
-      return c.json({ error: 'Webhook error' }, 400);
+      return c.json({ error: "Webhook error" }, 400);
     }
   },
 };
-
-
-
-
-
-
-
-
-
 
 export const updatePayment = async (c: Context) => {
   const id = parseInt(c.req.param("id"));
