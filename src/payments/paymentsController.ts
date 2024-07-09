@@ -1,3 +1,4 @@
+import stripe from "../stripe/stripe";
 import {
   deletePaymentService,
   createPaymentService,
@@ -5,6 +6,7 @@ import {
   getPaymentsService,
   updatePaymentService,
 } from "./paymentsService";
+
 
 import { type Context } from "hono";
 
@@ -23,19 +25,62 @@ export const getPayment = async (c: Context) => {
   return c.json(payment, 200);
 };
 
-export const createPayment = async (c: Context) => {
-  try {
-    const payment = await c.req.json();
-    console.log(payment);
-    const createdPayment = await createPaymentService(payment);
-    if (!createdPayment) {
-      return c.text("No payment created");
+// export const createPayment = async (c: Context) => {
+//   try {
+//     const payment = await c.req.json();
+//     console.log(payment);
+//     const createdPayment = await createPaymentService(payment);
+//     if (!createdPayment) {
+//       return c.text("No payment created");
+//     }
+//     return c.json({ msg: createdPayment }, 201);
+//   } catch (error: any) {
+//     return c.json({ error: error?.message }, 400);
+//   }
+// };
+
+
+const paymentService = createPaymentService();
+
+export const createPayment = {
+  async createCheckoutSession(c: Context) {
+    const { bookingId, amount } = await c.req.json();
+    const session = await paymentService.createCheckoutSession(bookingId, amount);
+    return c.json({ sessionId: session.id });
+  },
+
+  async handleWebhook(c: Context) {
+    const sig = c.req.header('stripe-signature');
+    const rawBody = await c.req.raw.text();
+
+    try {
+      const event = stripe.webhooks.constructEvent(
+        rawBody,
+        sig!,
+        process.env.STRIPE_WEBHOOK_SECRET!
+      );
+
+      if (event.type === 'checkout.session.completed') {
+        const session = event.data.object;
+        await paymentService.handleSuccessfulPayment(session.id);
+      }
+
+      return c.json({ received: true });
+    } catch (err) {
+      console.error(err);
+      return c.json({ error: 'Webhook error' }, 400);
     }
-    return c.json({ msg: createdPayment }, 201);
-  } catch (error: any) {
-    return c.json({ error: error?.message }, 400);
-  }
+  },
 };
+
+
+
+
+
+
+
+
+
 
 export const updatePayment = async (c: Context) => {
   const id = parseInt(c.req.param("id"));

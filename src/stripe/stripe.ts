@@ -1,9 +1,10 @@
 import Stripe from 'stripe';
+import dotenv from 'dotenv';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not set in the environment variables');
-}
+dotenv.config();
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: 2024-06-16, // Use the latest API version
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-06-20', // Use the latest API version
 });
+
+export default stripe;

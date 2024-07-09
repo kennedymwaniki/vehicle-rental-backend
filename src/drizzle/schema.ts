@@ -101,7 +101,7 @@ export const PaymentsTable = pgTable("payments", {
   bookingId: integer("booking_id").references(() => BookingsTable.bookingId, {
     onDelete: "cascade",
   }),
-  amount: decimal("amount").notNull(),
+  amount: integer("amount").notNull(),
   paymentStatus: paymentStatusEnum("payment_status")
     .default("Pending")
     .notNull(),
