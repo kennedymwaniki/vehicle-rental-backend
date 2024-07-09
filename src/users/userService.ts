@@ -9,6 +9,7 @@ export const getUsersService = async () => {
       fullName: true,
       email: true,
       role: true,
+      address: true,
       contactPhone: true,
     },
   });
