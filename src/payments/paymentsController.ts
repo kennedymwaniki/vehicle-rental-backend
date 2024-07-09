@@ -72,8 +72,8 @@ export const createPayment = {
   async testCreateCheckoutSession(c: Context) {
     try {
       // For testing, we'll use hardcoded values
-      const bookingId = 3;
-      const amount = 100; // $100
+      const bookingId = 1;
+      const amount = 500; // $100
       console.log(
         `Test creating checkout session for bookingId: ${bookingId}, amount: ${amount}`
       );
