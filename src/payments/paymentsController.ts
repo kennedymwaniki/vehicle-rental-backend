@@ -82,6 +82,8 @@ export const createPayment = {
         bookingId,
         amount
       );
+      ///trying to update data on mytables once successful
+      await paymentService.handleSuccessfulPayment(session.id);
 
       return c.json({
         success: true,
@@ -124,11 +126,11 @@ export const createPayment = {
 };
 
 export const updatePayment = async (c: Context) => {
-  const id = parseInt(c.req.param("id"));
-  if (isNaN(id)) return c.text("Invalid ID", 400);
-
-  const payment = await c.req.json();
   try {
+    const id = parseInt(c.req.param("id"));
+    if (isNaN(id)) return c.text("Invalid ID", 400);
+
+    const payment = await c.req.json();
     const searchedPayment = await getPaymentById(id);
     if (searchedPayment == undefined) return c.text("Payment not found", 404);
 
