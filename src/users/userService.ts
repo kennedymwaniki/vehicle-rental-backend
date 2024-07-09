@@ -7,8 +7,8 @@ export const getUsersService = async () => {
     columns: {
       userId: true,
       fullName: true,
-      email: true,
       role: true,
+      email: true,
       address: true,
       contactPhone: true,
     },
