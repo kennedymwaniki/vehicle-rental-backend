@@ -7,12 +7,12 @@ import {
   updateBooking,
   deleteBooking,
 } from "./bookingController";
-import { adminRoleAuth, bothRoleAuth } from "../middleware/authBearer";
+import { bothRoleAuth } from "../middleware/authBearer";
 
 export const bookingRouter = new Hono();
 
-bookingRouter.get("/bookings",adminRoleAuth, getBookings);
-bookingRouter.get("/bookings/:id",adminRoleAuth, getBooking);
-bookingRouter.post("/bookings", adminRoleAuth,createBooking);
-bookingRouter.put("/bookings/:id", adminRoleAuth, updateBooking);
-bookingRouter.delete("/bookings/:id", bothRoleAuth, deleteBooking);
+bookingRouter.get("/bookings", getBookings);
+bookingRouter.get("/bookings/:id", getBooking);
+bookingRouter.post("/bookings", createBooking);
+bookingRouter.put("/bookings/:id", updateBooking);
+bookingRouter.delete("/bookings/:id", deleteBooking);
