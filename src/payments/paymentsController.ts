@@ -50,7 +50,7 @@ export const createPayment = {
     try {
       const { bookingId, amount } = await c.req.json();
       console.log(
-        `Creating checkout session for bookingId: ${bookingId}, amount: ${amount}`
+        `Check if id and amount is being received: ${bookingId}, amount: ${amount}`
       );
 
       const session = await paymentService.createCheckoutSession(
@@ -72,10 +72,10 @@ export const createPayment = {
   async testCreateCheckoutSession(c: Context) {
     try {
       // For testing, we'll use hardcodd values
-      const bookingId = 1;
-      const amount = 500; // $100
+      const bookingId = 2;
+      const amount = 10000; // $100
       console.log(
-        `Test creating checkout session for bookingId: ${bookingId}, amount: ${amount}`
+        `Testing checkout session inpts for bookingId: ${bookingId}, amount: ${amount}`
       );
 
       const session = await paymentService.createCheckoutSession(
