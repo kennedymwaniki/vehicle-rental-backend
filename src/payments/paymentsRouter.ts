@@ -1,3 +1,4 @@
+import { bothRoleAuth } from "./../middleware/authBearer";
 import { Hono } from "hono";
 
 import {

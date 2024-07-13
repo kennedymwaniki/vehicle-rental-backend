@@ -9,14 +9,11 @@ import {
 } from "./vehicleSpecsController";
 import { zValidator } from "@hono/zod-validator";
 import { VehicleSpecificationSchema } from "../validator";
+import { adminRoleAuth, bothRoleAuth } from "../middleware/authBearer";
 
 export const vehicleSpecsRouter = new Hono();
 
-vehicleSpecsRouter.get(
-  "/vehicleSpecs",
-
-  getVehicleSpecs
-);
+vehicleSpecsRouter.get("/vehicleSpecs", getVehicleSpecs);
 vehicleSpecsRouter.get("/vehicleSpecs/:id", getVehicleSpec);
 vehicleSpecsRouter.post(
   "/vehicleSpecs",

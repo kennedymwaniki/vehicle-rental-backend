@@ -3,16 +3,7 @@ import db from "../drizzle/db";
 import { TIBooking, TSBooking, BookingsTable } from "../drizzle/schema";
 
 export const getBookingsService = async () => {
-  const bookings = await db.query.BookingsTable.findMany({
-    columns: {
-      bookingId: true,
-      userId: true,
-      bookingDate: true,
-      returnDate: true,
-      bookingStatus: true,
-      totalAmount: true,
-    },
-  });
+  const bookings = await db.query.BookingsTable.findMany();
   return bookings;
 };
 

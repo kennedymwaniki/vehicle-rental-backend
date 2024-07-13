@@ -135,6 +135,7 @@ export const loginUser = async (c: Context) => {
 
     // Check if user exists
     const foundUser = await logInAuthService(user);
+    console.log(foundUser);
     if (!foundUser) return c.json({ error: "User not found" }, 404);
 
     // Validate user password

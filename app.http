@@ -1,12 +1,38 @@
 ###
 GET http://localhost:3000/api/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzZWFuLmRvZUBleGFtcGxlLmNvbSIsInJvbGUiOiJ1c2VyIiwiZXhwIjoxNzIwMTA3NjcyfQ.YvF2NI0oTJv1QtT1PazfglrERBExuEWNIcgbFcO_nVY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
+
+###
+POST http://localhost:3000/api/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
+Content-Type: application/json
+
+{
+"fullName":"jojo siwa" ,
+  "email":"jo@gmail.com" ,
+  "password":123456 ,
+  "contactPhone": "07uuwjr",
+  "address": "ktus mjini",
+  "role":"admin" 
+
+}
+//userBookings
+###
+GET http://localhost:3000/api/user/bookings/1
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWUuZG9lQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzIwNzk3MzE4fQ.Nyob3hKkjweD33BjPGAq7EsGTFNtCF3Wlb8GQbjQi_0
+
+###
+GET http://localhost:3000/api/user/support-tickets/1
+
+
 ###
 GET http://localhost:3000/api/users/20
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 
 ###
 
 PUT http://localhost:3000/api/users/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 Content-Type: application/json
 
 {
@@ -16,7 +42,7 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:3000/api/users/19
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 
 //end of user actions
 
@@ -25,33 +51,49 @@ DELETE  http://localhost:3000/api/users/19
 //bookings
 ###
 GET http://localhost:3000/api/bookings
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 ###
 DELETE  http://localhost:3000/api/bookings/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 
 
 ###
 GET http://localhost:3000/api/fleet
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 ###
 GET http://localhost:3000/api/fleet/2
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 
 ///end of fleets
 ###
 GET http://localhost:3000/api/locations
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 
 ###
 GET http://localhost:3000/api/payments
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWUuZG9lQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzIwNzA1MzY1fQ.Lu3JBxn3ZqzkQ2dzSeZWm0EoMr2n3ZH-tYvDo2DFZH8
+###
+GET http://localhost:3000/api/vehicles/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
+//update vehicles
+PUT http://localhost:3000/api/vehicles/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
+Content-Type: application/json
+
+{
+    "rentalRate": "90000"
+}
 
 ###
-GET http://localhost:3000/api/vehicles
-
+GET http://localhost:3000/api/vehicle/specification/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 
 
 
 ///vehiclespecs
 ###
 GET http://localhost:3000/api/vehicle-specs
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 
 
 
@@ -59,7 +101,7 @@ GET http://localhost:3000/api/vehicle-specs
 
 ###
 GET http://localhost:3000/api/support-tickets
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 ###
 //authRouter
 //admin
@@ -121,6 +163,18 @@ Content-Type: application/json
     "address": "123 Main St, Anytown, USA",
     "role": "admin"
 }
+###
+POST  http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "fullName": "Kennedy Mwaniki",
+    "email": "mwanikikennedy@gmail.com",
+    "contactPhone": "+1234567890",
+    "password": "12345678",
+    "address": "123 Main St, Anytown, USA",
+    "role": "user"
+}
 
 ###
 POST  http://localhost:3000/api/auth/login
@@ -128,6 +182,15 @@ Content-Type: application/json
 
 {
     "email": "kennedymwaniki089@gmail.com",
+    "password": "12345678"
+}
+###
+###
+POST  http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "mwanikikennedy@gmail.com",
     "password": "12345678"
 }
 

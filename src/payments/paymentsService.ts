@@ -91,8 +91,8 @@ export const createPaymentService = () => {
       await db
         .insert(PaymentsTable)
         .values({
-          bookingId, // Assuming bookingId is a number in PaymentsTable
-          amount: amountTotal / 100, // Assuming amount is a number in PaymentsTable
+          bookingId, 
+          amount: amountTotal / 100, 
           paymentStatus: "Completed",
           paymentMethod: session.payment_method_types[0],
           transactionId: session.payment_intent as string,

@@ -39,6 +39,7 @@ export const createTicket = async (c: Context) => {
 
 export const updateTicket = async (c: Context) => {
   const id = parseInt(c.req.param("id"));
+  console.log("ticketController:", id);
   if (isNaN(id)) return c.text("Invalid ID", 400);
 
   const ticket = await c.req.json();

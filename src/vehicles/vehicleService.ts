@@ -39,3 +39,34 @@ export const updateVehicleService = async (id: number, vehicle: TIVehicle) => {
 export const deleteVehicleService = async (id: number) => {
   await db.delete(VehiclesTable).where(eq(VehiclesTable.vehicleId, id));
 };
+
+export const getVehicleSpecificationsById = async (vehicleId: number) => {
+  const vehicleSpecifications = await db.query.VehiclesTable.findFirst({
+    where: eq(VehiclesTable.vehicleId, vehicleId),
+    columns: {
+      vehicleId: true,
+      vehicleSpecsId: true,
+      rentalRate: true,
+      availability: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+    with: {
+      vehicleSpec: {
+        columns: {
+          manufacturer: true,
+          model: true,
+          year: true,
+          fuelType: true,
+          engineCapacity: true,
+          transmission: true,
+          seatingCapacity: true,
+          color: true,
+          features: true,
+        },
+      },
+    },
+  });
+
+  return vehicleSpecifications;
+};
