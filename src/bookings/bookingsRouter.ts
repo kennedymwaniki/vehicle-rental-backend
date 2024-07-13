@@ -1,7 +1,7 @@
 import { bothRoleAuth } from "../middleware/authBearer";
 import { adminRoleAuth } from "./../middleware/authBearer";
 import { Hono } from "hono";
-zValidator;
+
 import {
   getBooking,
   getBookings,
