@@ -38,11 +38,12 @@ export const createBooking = async (c: Context) => {
 };
 
 export const updateBooking = async (c: Context) => {
-  const id = parseInt(c.req.param("id"));
-  if (isNaN(id)) return c.text("Invalid ID", 400);
-
-  const booking = await c.req.json();
   try {
+    const id = parseInt(c.req.param("id"));
+    console.log("bookingController:", id);
+    if (isNaN(id)) return c.text("Invalid ID", 400);
+
+    const booking = await c.req.json();
     const searchedBooking = await getBookingById(id);
     if (searchedBooking == undefined) return c.text("Booking not found", 404);
 
