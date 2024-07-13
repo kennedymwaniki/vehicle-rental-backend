@@ -16,8 +16,8 @@ export const userRouter = new Hono();
 // userRouter.use("*");
 
 // get users route
-userRouter.get("/users", adminRoleAuth, getUsers);
-userRouter.get("/users/:id", bothRoleAuth, getUser);
+userRouter.get("/users", getUsers);
+userRouter.get("/users/:id", getUser);
 userRouter.post(
   "/users",
   zValidator("json", UserSchema, (result, c) => {
