@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import { db } from "../drizzle/db";
 import {
   TIUser,
@@ -9,7 +10,7 @@ import {
 } from "../drizzle/schema";
 import { sql } from "drizzle-orm";
 
-export const createAuthUserService = async (user: any) => {
+export const createAuthUserService = async (user: any): Promise<TIUser> => {
   try {
     console.log("AuthService:", user);
     // Insert user into `UsersTable` table
@@ -22,6 +23,9 @@ export const createAuthUserService = async (user: any) => {
     if (existingUser) {
       throw new Error("User with this email already exists");
     }
+    //hash password before inserting
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    user.password = hashedPassword;
 
     const createdUser = await db
       .insert(UsersTable)
@@ -39,7 +43,6 @@ export const createAuthUserService = async (user: any) => {
     // Extract the created user ID
     const userId = createdUser[0].userId;
 
-    // Insert user into `AuthUsersTable` table
     await db.insert(AuthUsersTable).values({
       userId,
       password: user.password,
@@ -61,6 +64,7 @@ export const logInAuthService = async (user: TSAuthUsers) => {
 
     const authUser = await db.query.UsersTable.findFirst({
       columns: {
+        userId: true,
         role: true,
         fullName: true,
         email: true,

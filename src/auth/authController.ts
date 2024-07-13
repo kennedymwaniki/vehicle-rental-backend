@@ -161,7 +161,7 @@ export const loginUser = async (c: Context) => {
         {
           token,
           user: {
-            userId: foundUser.userId,
+            id: foundUser.userId,
             fullName: foundUser.fullName,
             email: foundUser.email,
             role: foundUser.role,
