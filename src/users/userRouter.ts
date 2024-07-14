@@ -25,7 +25,6 @@ userRouter.post(
       return c.json(result.error, 400);
     }
   }),
-  adminRoleAuth,
   createUser
 );
 // userRouter.post("/users/register", createUser);
