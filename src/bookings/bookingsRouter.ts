@@ -18,11 +18,6 @@ bookingRouter.get("/bookings", getBookings);
 bookingRouter.get("/bookings/:id", getBooking);
 bookingRouter.post(
   "/bookings",
-  zValidator("json", BookingSchema, (result, c) => {
-    if (!result.success) {
-      return c.json(result.error, 400);
-    }
-  }),
   createBooking
 );
 bookingRouter.put(
