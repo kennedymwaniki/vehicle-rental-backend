@@ -18,11 +18,11 @@ Content-Type: application/json
 }
 //userBookings
 ###
-GET http://localhost:3000/api/user/bookings/1
+GET http://localhost:3000/api/users/bookings/3
 # Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWUuZG9lQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNzIwNzk3MzE4fQ.Nyob3hKkjweD33BjPGAq7EsGTFNtCF3Wlb8GQbjQi_0
 
 ###
-GET http://localhost:3000/api/user/support-tickets/1
+GET http://localhost:3000/api/users/support-tickets/1
 
 
 ###

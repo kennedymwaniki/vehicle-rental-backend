@@ -44,5 +44,5 @@ userRouter.put(
 // delete user
 userRouter.delete("/users/:id", deleteUser);
 
-userRouter.get("/user/bookings/:id", getUserBookings);
-userRouter.get("/user/support-tickets/:id", getUserSupportTickets);
+userRouter.get("/users/bookings/:id", getUserBookings);
+userRouter.get("/users/support-tickets/:id", getUserSupportTickets);
