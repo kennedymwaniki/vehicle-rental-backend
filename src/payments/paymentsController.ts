@@ -1,3 +1,4 @@
+import { Session } from "inspector";
 import stripe from "../stripe/stripe";
 import {
   deletePaymentService,
@@ -58,7 +59,11 @@ export const createPayment = {
         amount
       );
 
-      return c.json({ sessionId: session.id , checkoutUrl: session.url,});
+      return c.json({
+        success: true,
+        sessionId: session.id,
+        checkoutUrl: session.url,
+      });
     } catch (error) {
       console.error("Error creating checkout session:", error);
       return c.json(
@@ -82,6 +87,7 @@ export const createPayment = {
         bookingId,
         amount
       );
+      console.log(session);
       ///trying to update data on mytables once successful
       await paymentService.handleSuccessfulPayment(session.id);
 
@@ -102,10 +108,10 @@ export const createPayment = {
   ///end of test
 
   async handleWebhook(c: Context) {
-    const sig = c.req.header("stripe-signature");
-    const rawBody = await c.req.raw.text();
-
     try {
+      const sig = c.req.header("stripe-signature");
+      const rawBody = await c.req.raw.text();
+
       const event = stripe.webhooks.constructEvent(
         rawBody,
         sig!,

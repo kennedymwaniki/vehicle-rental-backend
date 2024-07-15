@@ -9,7 +9,7 @@ import {
 import stripe from "../stripe/stripe";
 
 // interface TIPayment {
-//   // Define the properties of TIPayment interface according to your needs
+// ?  // Define the properties of TIPayment interface according to your needs
 //   bookingId: number;
 //   amount: number;
 //   paymentStatus: string;
