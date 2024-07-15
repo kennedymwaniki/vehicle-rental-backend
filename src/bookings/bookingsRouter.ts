@@ -27,11 +27,11 @@ bookingRouter.post(
 );
 bookingRouter.put(
   "/bookings/:id",
-  zValidator("json", BookingSchema, (result, c) => {
-    if (!result.success) {
-      return c.json(result.error, 400);
-    }
-  }),
+  // zValidator("json", BookingSchema, (result, c) => {
+  //   if (!result.success) {
+  //     return c.json(result.error, 400);
+  //   }
+  // }),
   updateBooking
 );
 bookingRouter.delete("/bookings/:id", deleteBooking);
