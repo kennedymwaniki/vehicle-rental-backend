@@ -45,4 +45,4 @@ userRouter.put(
 userRouter.delete("/users/:id", deleteUser);
 
 userRouter.get("/users/bookings/:id", getUserBookings);
-userRouter.get("/users/support-tickets/:id", getUserSupportTickets);
+userRouter.get("/users/tickets/:id", getUserSupportTickets);
