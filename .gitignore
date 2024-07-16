@@ -7,10 +7,10 @@
 .idea/workspace.xml
 .idea/usage.statistics.xml
 .idea/shelf
-dist
 
 # deps
 node_modules/
+dist
 
 # env
 .env
