@@ -1,24 +1,26 @@
-import { Context } from "hono";
+import { Session } from "inspector";
+import stripe from "../stripe/stripe";
 import {
-  createPaymentService,
   deletePaymentService,
+  createPaymentService,
   getPaymentById,
   getPaymentsService,
   updatePaymentService,
 } from "./paymentsService";
 
-import stripe from "../stripe/stripe";
-const paymentService = createPaymentService();
+import { type Context } from "hono";
 
 export const getPayments = async (c: Context) => {
   const data = await getPaymentsService();
   return c.json(data);
 };
 
+// In paymentsController.ts
+
 export const getPayment = async (c: Context) => {
   const id = parseInt(c.req.param("id"));
   if (isNaN(id)) {
-    return c.json({ error: "Invalid ID" }, 400);
+    return c.json({ error: "Invalid ID" }, 400); // Return a 400 error for invalid ID
   }
   console.log(id);
   const payment = await getPaymentById(id);
@@ -28,12 +30,30 @@ export const getPayment = async (c: Context) => {
   return c.json(payment, 200);
 };
 
+// export const createPayment = async (c: Context) => {
+//   try {
+//     const payment = await c.req.json();
+//     console.log(payment);
+//     const createdPayment = await createPaymentService(payment);
+//     if (!createdPayment) {
+//       return c.text("No payment created");
+//     }
+//     return c.json({ msg: createdPayment }, 201);
+//   } catch (error: any) {
+//     return c.json({ error: error?.message }, 400);
+//   }
+// };
+
+const paymentService = createPaymentService();
+
 export const createPayment = {
   async createCheckoutSession(c: Context) {
     try {
-      const booking = await c.req.json();
-      const { bookingId, amount } = booking;
-      if (bookingId === undefined || amount === undefined) {
+      const { bookingId, amount } = await c.req.json();
+      console.log(
+        `Check if id and amount is being received: ${bookingId}, amount: ${amount}`
+      );
+      if (bookingId == undefined || amount == undefined) {
         console.error("Booking ID or amount is missing");
         return c.json(
           { success: false, error: "Booking ID or amount is missing" },
@@ -41,14 +61,10 @@ export const createPayment = {
         );
       }
 
-      console.log(
-        `Check if id and amount is being received: ${bookingId}, amount: ${amount}`
-      );
-
-      const session = await paymentService.createCheckoutSession({
+      const session = await paymentService.createCheckoutSession(
         bookingId,
-        amount,
-      });
+        amount
+      );
 
       return c.json({
         success: true,
@@ -63,6 +79,40 @@ export const createPayment = {
       );
     }
   },
+  //testing of checkout session
+
+  async testCreateCheckoutSession(c: Context) {
+    try {
+      // For testing, we'll use hardcoded values
+      const bookingId = 8;
+      const amount = 90000; // $100
+      console.log(
+        `Testing checkout session inpts for bookingId: ${bookingId}, amount: ${amount}`
+      );
+
+      const session = await paymentService.createCheckoutSession(
+        bookingId,
+        amount
+      );
+      console.log(session);
+      ///trying to update data on mytables once successful
+      await paymentService.handleSuccessfulPayment(session.id);
+
+      return c.json({
+        success: true,
+        sessionId: session.id,
+        checkoutUrl: session.url,
+      });
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+      return c.json(
+        { success: false, error: "Failed to create checkout session" },
+        500
+      );
+    }
+  },
+
+  ///end of test
 
   async handleWebhook(c: Context) {
     try {
