@@ -1,15 +1,9 @@
 import { eq } from "drizzle-orm";
 import db from "../drizzle/db";
-import {
-  TIPayment,
-  TSPayment,
-  PaymentsTable,
-  BookingsTable,
-} from "../drizzle/schema";
+import { TIPayment, TSPayment, PaymentsTable, BookingsTable } from "../drizzle/schema";
 import stripe from "../stripe/stripe";
 
 // interface TIPayment {
-// ?  // Define the properties of TIPayment interface according to your needs
 //   bookingId: number;
 //   amount: number;
 //   paymentStatus: string;
@@ -30,22 +24,16 @@ export const getPaymentsService = async () => {
   return payments;
 };
 
-export const getPaymentById = async (
-  id: number
-): Promise<TSPayment | undefined> => {
+export const getPaymentById = async (id: number): Promise<TSPayment | undefined> => {
   const payment = await db.query.PaymentsTable.findFirst({
     where: eq(PaymentsTable.paymentId, id),
   });
   return payment;
 };
-// export const createPaymentService = async (payment: TIPayment) => {
-//   await db.insert(PaymentsTable).values(payment);
-//   return payment;
-// };
 
 export const createPaymentService = () => {
   return {
-    async createCheckoutSession(bookingId: number, amount: number) {
+    async createCheckoutSession(booking: { bookingId: number; amount: number }) {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items: [
@@ -55,7 +43,7 @@ export const createPaymentService = () => {
               product_data: {
                 name: "Car Booking",
               },
-              unit_amount: amount * 100, // Stripe expects amount in cents
+              unit_amount: booking.amount * 100, // Stripe expects amount in cents
             },
             quantity: 1,
           },
@@ -64,7 +52,7 @@ export const createPaymentService = () => {
         success_url: `${process.env.FRONTEND_URL}/booking-success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.FRONTEND_URL}/booking-cancelled`,
         metadata: {
-          bookingId: bookingId.toString(),
+          bookingId: booking.bookingId.toString(),
         },
       });
 
