@@ -55,7 +55,7 @@ export const createPaymentService = () => {
               product_data: {
                 name: "Car Booking",
               },
-              unit_amount: Number(amount) * 100, // Stripe expects amount in cents
+              unit_amount: amount * 100, // Stripe expects amount in cents
             },
             quantity: 1,
           },

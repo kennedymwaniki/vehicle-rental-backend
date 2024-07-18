@@ -55,13 +55,7 @@ export const createPayment = {
       );
       console.log(` This is the typeOf the amount`, typeof `${amount}`);
       console.log(` This is the typeOf the bookingId`, typeof `${bookingId}`);
-      // if (bookingId === undefined || amount === undefined) {
-      //   console.error("Booking ID or amount is missing");
-      //   return c.json(
-      //     { success: false, error: "Booking ID or amount is missing" },
-      //     400
-      //   );
-      // }
+   
 
       const session = await paymentService.createCheckoutSession(
         bookingId,
