@@ -50,16 +50,16 @@ export const createPayment = {
   async createCheckoutSession(c: Context) {
     try {
       const { bookingId, amount } = await c.req.json();
-      console.log(
-        `Check if id and amount is being received: ${bookingId}, amount: ${amount}`
-      );
-      if (bookingId == undefined || amount == undefined) {
-        console.error("Booking ID or amount is missing");
-        return c.json(
-          { success: false, error: "Booking ID or amount is missing" },
-          400
-        );
-      }
+      // console.log(
+      //   `Check if id and amount is being received: ${bookingId}, amount: ${amount}`
+      // );
+      // if (bookingId === undefined || amount === undefined) {
+      //   console.error("Booking ID or amount is missing");
+      //   return c.json(
+      //     { success: false, error: "Booking ID or amount is missing" },
+      //     400
+      //   );
+      // }
 
       const session = await paymentService.createCheckoutSession(
         bookingId,
