@@ -129,7 +129,7 @@ export const createPayment = {
   async handleWebhook(c: Context) {
     try {
       const sig = c.req.header("stripe-signature");
-      const rawBody = await c.req.raw.text();
+      const rawBody = await c.req.raw.clone().text(); // Use clone() to avoid consuming the body
 
       const event = stripe.webhooks.constructEvent(
         rawBody,

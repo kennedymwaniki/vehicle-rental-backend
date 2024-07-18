@@ -7,6 +7,7 @@ import {
   updatePayment,
   deletePayment,
 } from "./paymentsController";
+import { parse } from "querystring";
 
 export const paymentsRouter = new Hono();
 
@@ -19,7 +20,9 @@ paymentsRouter.post(
   "/create-checkout-session",
   createPayment.createCheckoutSession
 );
-paymentsRouter.post("/webhook", createPayment.handleWebhook);
+paymentsRouter.post("/webhook", createPayment.handleWebhook, {
+  parse: false,
+} as any);
 paymentsRouter.get(
   "/test-checkout-session",
   createPayment.testCreateCheckoutSession
