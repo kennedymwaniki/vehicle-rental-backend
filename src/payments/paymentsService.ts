@@ -58,6 +58,15 @@ export const createPaymentService = () => {
       const validBookingId = Number(bookingId);
       const validAmount = Number(amount);
 
+      console.log(
+        `this is the validBookingId ${validBookingId} in the service which is receiced as :`,
+        `${bookingId}`
+      );
+      console.log(
+        `this is the validAmount ${validBookingId} in the service which is receiced as :`,
+        `${bookingId}`
+      );
+
       if (isNaN(validBookingId) || isNaN(validAmount)) {
         throw new Error("Invalid bookingId or amount");
       }

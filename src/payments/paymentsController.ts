@@ -64,11 +64,11 @@ export const createPayment = {
       const validAmount = Number(amount);
 
       console.log(
-        `this is the validBookingId ${validBookingId} which is receiced as :`,
+        `this is the validBookingId ${validBookingId} in the controller which is receiced as :`,
         `${bookingId}`
       );
       console.log(
-        `this is the validAmount ${validBookingId} which is receiced as :`,
+        `this is the validAmount ${validBookingId} in the controller which is receiced as :`,
         `${bookingId}`
       );
 
