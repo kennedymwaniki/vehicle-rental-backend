@@ -46,6 +46,14 @@ export const getPaymentById = async (
 export const createPaymentService = () => {
   return {
     async createCheckoutSession(bookingId: number, amount: number) {
+      // Ensure bookingId and amount are numbers
+      const validBookingId = Number(bookingId);
+      const validAmount = Number(amount);
+
+      if (isNaN(validBookingId) || isNaN(validAmount)) {
+        throw new Error("Invalid bookingId or amount");
+      }
+
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         line_items: [
@@ -55,7 +63,7 @@ export const createPaymentService = () => {
               product_data: {
                 name: "Car Booking",
               },
-              unit_amount: amount * 100, // Stripe expects amount in cents
+              unit_amount: validAmount * 100, // Stripe expects amount in cents
             },
             quantity: 1,
           },
@@ -64,7 +72,7 @@ export const createPaymentService = () => {
         success_url: `${process.env.FRONTEND_URL}/booking-success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.FRONTEND_URL}/booking-cancelled`,
         metadata: {
-          bookingId: bookingId,
+          bookingId: validBookingId,
         },
       });
 
@@ -75,19 +83,16 @@ export const createPaymentService = () => {
       const session = await stripe.checkout.sessions.retrieve(sessionId);
       const bookingId = parseInt(session.metadata!.bookingId);
 
-      // Handle possible null value for session.amount_total
       const amountTotal = session.amount_total;
       if (amountTotal === null) {
         throw new Error("session.amount_total is null");
       }
 
-      // Update booking status
       await db
         .update(BookingsTable)
         .set({ bookingStatus: "Completed" })
         .where(eq(BookingsTable.bookingId, bookingId));
 
-      // Create payment record
       await db
         .insert(PaymentsTable)
         .values({

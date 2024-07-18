@@ -45,20 +45,43 @@ export const getPayment = async (c: Context) => {
 // };
 
 const paymentService = createPaymentService();
-
 export const createPayment = {
   async createCheckoutSession(c: Context) {
     try {
       const { bookingId, amount } = await c.req.json();
+      //! i am checking how the id and amount is received
       console.log(
-        `Check if id and amount is being received: ${bookingId}, amount: ${amount}`
+        `this is how we receive the bookingId ${bookingId} as a :`,
+        typeof bookingId
       );
-      console.log(` This is the typeOf the amount`, typeof `${amount}`);
-      console.log(` This is the typeOf the bookingId`, typeof `${bookingId}`);
+      console.log(
+        `this is how we receive the amount ${amount} as a :`,
+        typeof amount
+      );
+      //!converting our received booking id and amount into numbers
+
+      const validBookingId = Number(bookingId);
+      const validAmount = Number(amount);
+
+      console.log(
+        `this is the validBookingId ${validBookingId} which is receiced as :`,
+        `${bookingId}`
+      );
+      console.log(
+        `this is the validAmount ${validBookingId} which is receiced as :`,
+        `${bookingId}`
+      );
+
+      if (isNaN(validBookingId) || isNaN(validAmount)) {
+        return c.json(
+          { success: false, error: "Invalid bookingId or amount" },
+          400
+        );
+      }
 
       const session = await paymentService.createCheckoutSession(
-        bookingId,
-        amount
+        validBookingId,
+        validAmount
       );
 
       return c.json({
@@ -74,23 +97,16 @@ export const createPayment = {
       );
     }
   },
-  //testing of checkout session
 
   async testCreateCheckoutSession(c: Context) {
     try {
-      // For testing, we'll use hardcoded values
       const bookingId = 8;
-      const amount = 90000; // $100
-      console.log(
-        `Testing checkout session inpts for bookingId: ${bookingId}, amount: ${amount}`
-      );
+      const amount = 90000;
 
       const session = await paymentService.createCheckoutSession(
         bookingId,
         amount
       );
-      console.log(session);
-      ///trying to update data on mytables once successful
       await paymentService.handleSuccessfulPayment(session.id);
 
       return c.json({
@@ -106,8 +122,6 @@ export const createPayment = {
       );
     }
   },
-
-  ///end of test
 
   async handleWebhook(c: Context) {
     try {
