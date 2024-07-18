@@ -54,7 +54,7 @@ export const createPayment = {
         `Check if id and amount is being received: ${bookingId}, amount: ${amount}`
       );
       console.log(` This is the typeOf the amount`, typeof `${amount}`);
-      console.log(` This is the typeOf the amount`, typeof `${bookingId}`);
+      console.log(` This is the typeOf the bookingId`, typeof `${bookingId}`);
       // if (bookingId === undefined || amount === undefined) {
       //   console.error("Booking ID or amount is missing");
       //   return c.json(
