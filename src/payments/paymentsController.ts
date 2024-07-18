@@ -1,5 +1,6 @@
 import { Session } from "inspector";
 import stripe from "../stripe/stripe";
+import getRawBody from "raw-body";
 import {
   deletePaymentService,
   createPaymentService,
@@ -129,7 +130,8 @@ export const createPayment = {
   async handleWebhook(c: Context) {
     try {
       const sig = c.req.header("stripe-signature");
-      const rawBody = await c.req.raw.clone().text(); // Use clone() to avoid consuming the body
+      const rawBody = await c.req.raw.text(); // Use clone() to avoid consuming the body
+      console.log("rawBody in controller", rawBody);
 
       const event = stripe.webhooks.constructEvent(
         rawBody,

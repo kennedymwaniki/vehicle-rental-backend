@@ -20,9 +20,7 @@ paymentsRouter.post(
   "/create-checkout-session",
   createPayment.createCheckoutSession
 );
-paymentsRouter.post("/webhook", createPayment.handleWebhook, {
-  parse: false,
-} as any);
+paymentsRouter.post("/webhook", createPayment.handleWebhook);
 paymentsRouter.get(
   "/test-checkout-session",
   createPayment.testCreateCheckoutSession
