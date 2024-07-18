@@ -83,7 +83,7 @@ export const createPaymentService = () => {
         success_url: `${process.env.FRONTEND_URL}/booking-success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.FRONTEND_URL}/booking-cancelled`,
         metadata: {
-          bookingId: validBookingId.toString(),
+          bookingId: validBookingId,
         },
       });
 
