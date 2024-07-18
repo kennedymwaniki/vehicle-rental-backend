@@ -50,9 +50,26 @@ export const createPayment = {
   async createCheckoutSession(c: Context) {
     try {
       const { bookingId, amount } = await c.req.json();
-//!converting our received booking id and amount into numbers because we are receiving strings
+      //! i am checking how the id and amount is received
+      console.log(
+        `this is how we receive the bookingId ${bookingId} as a :`,
+        typeof bookingId
+      );
+      console.log(
+        `this is how we receive the amount ${amount} as a :`,
+        typeof amount
+      );
+      //!converting our received booking id and amount into numbers because we are receiving strings
       const validBookingId = Number(bookingId);
       const validAmount = Number(amount);
+      console.log(
+        `this is the validBookingId ${validBookingId} which is receiced as :`,
+        `${bookingId}`
+      );
+      console.log(
+        `this is the validAmount ${validBookingId} which is receiced as :`,
+        `${bookingId}`
+      );
 
       if (isNaN(validBookingId) || isNaN(validAmount)) {
         return c.json(
