@@ -46,7 +46,15 @@ export const getPaymentById = async (
 export const createPaymentService = () => {
   return {
     async createCheckoutSession(bookingId: number, amount: number) {
-      // Ensure bookingId and amount are numbers
+      console.log(
+        `this is how we receive the bookingId in the service ${bookingId} as a :`,
+        typeof bookingId
+      );
+      console.log(
+        `this is how we receive the amount in the service ${amount} as a :`,
+        typeof amount
+      );
+      //! Ensure bookingId and amount are numbers
       const validBookingId = Number(bookingId);
       const validAmount = Number(amount);
 

@@ -51,11 +51,11 @@ export const createPayment = {
       const { bookingId, amount } = await c.req.json();
       //! i am checking how the id and amount is received
       console.log(
-        `this is how we receive the bookingId ${bookingId} as a :`,
+        `this is how we receive the bookingId in the controller ${bookingId} as a :`,
         typeof bookingId
       );
       console.log(
-        `this is how we receive the amount ${amount} as a :`,
+        `this is how we receive the amount in the controller ${amount} as a :`,
         typeof amount
       );
       //!converting our received booking id and amount into numbers
@@ -83,6 +83,9 @@ export const createPayment = {
         validBookingId,
         validAmount
       );
+      //!check the session
+
+      console.log(session);
 
       return c.json({
         success: true,
