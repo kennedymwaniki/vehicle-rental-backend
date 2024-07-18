@@ -46,14 +46,8 @@ export const getPaymentById = async (
 export const createPaymentService = () => {
   return {
     async createCheckoutSession(bookingId: number, amount: number) {
-      console.log(
-        `this is how we receive the bookingId in the service ${bookingId} as a :`,
-        typeof bookingId
-      );
-      console.log(
-        `this is how we receive the amount in the service ${amount} as a :`,
-        typeof amount
-      );
+      console.log(`Booking ID in service: ${bookingId}`, typeof bookingId);
+      console.log(`Amount in service: ${amount}`, typeof amount);
       //! Ensure bookingId and amount are numbers
       const validBookingId = Number(bookingId);
       const validAmount = Number(amount);
@@ -89,7 +83,7 @@ export const createPaymentService = () => {
         success_url: `${process.env.FRONTEND_URL}/booking-success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.FRONTEND_URL}/booking-cancelled`,
         metadata: {
-          bookingId: validBookingId,
+          bookingId: validBookingId.toString(),
         },
       });
 
@@ -98,7 +92,7 @@ export const createPaymentService = () => {
 
     async handleSuccessfulPayment(sessionId: string) {
       const session = await stripe.checkout.sessions.retrieve(sessionId);
-      const bookingId = parseInt(session.metadata!.bookingId);
+      const bookingId = Number(session.metadata!.bookingId);
 
       const amountTotal = session.amount_total;
       if (amountTotal === null) {
