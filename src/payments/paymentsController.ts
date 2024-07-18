@@ -137,8 +137,12 @@ export const createPayment = {
         process.env.STRIPE_WEBHOOK_SECRET!
       );
 
+      console.log("Received event:", event);
+
       if (event.type === "checkout.session.completed") {
         const session = event.data.object;
+
+        console.log("Session data:", session);
         await paymentService.handleSuccessfulPayment(session.id);
       }
 

@@ -86,7 +86,7 @@ export const createPaymentService = () => {
           bookingId: validBookingId,
         },
       });
-
+      console.log(`service metaData`, session.metadata);
       return session;
     },
 
