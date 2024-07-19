@@ -132,7 +132,7 @@ export const createPayment = {
       const sig = c.req.header("stripe-signature");
       console.log("signature in controller", sig);
 
-      const rawBody = await c.req.text(); // Use clone() to avoid consuming the body
+      const rawBody = await c.req.text();
       console.log("rawBody in controller", rawBody);
 
       const event = stripe.webhooks.constructEvent(
