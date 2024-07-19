@@ -130,6 +130,8 @@ export const createPayment = {
   async handleWebhook(c: Context) {
     try {
       const sig = c.req.header("stripe-signature");
+      console.log("signature in controller", sig);
+
       const rawBody = await c.req.raw.text(); // Use clone() to avoid consuming the body
       console.log("rawBody in controller", rawBody);
 
