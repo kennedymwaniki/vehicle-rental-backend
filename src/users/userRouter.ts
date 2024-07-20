@@ -8,6 +8,7 @@ import {
   deleteUser,
   getUserBookings,
   getUserSupportTickets,
+  getUserRelations,
 } from "./userController";
 import { adminRoleAuth, bothRoleAuth } from "../middleware/authBearer";
 import { zValidator } from "@hono/zod-validator";
@@ -34,3 +35,4 @@ userRouter.delete("/users/:id", deleteUser);
 
 userRouter.get("/users/bookings/:id", getUserBookings);
 userRouter.get("/users/tickets/:id", getUserSupportTickets);
+userRouter.get("/users/relations/:id", getUserRelations);

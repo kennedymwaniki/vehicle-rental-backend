@@ -5,6 +5,7 @@ import {
   getUsersService,
   updateUserService,
   getUserBookingsById,
+  getAllUserRelationsById,
   getUserSupportTicketsById,
 } from "./userService";
 
@@ -117,4 +118,21 @@ export const getUserSupportTickets = async (c: Context) => {
     { user: userData, supportTickets: customerSupportTickets },
     200
   );
+};
+
+//! all user relations
+export const getUserRelations = async (c: Context) => {
+  const userId = Number(c.req.param("id"));
+  if (isNaN(userId)) {
+    return c.json({ error: "Invalid user ID" }, 400);
+  }
+  const userRelations = await getAllUserRelationsById(userId);
+  if (!userRelations) {
+    return c.json({
+      error: "We could not find such a user or their relations",
+    });
+  }
+  const { customerSupportTickets, bookings, ...userData } = userRelations;
+
+  return c.json({ userData, bookings, customerSupportTickets });
 };
