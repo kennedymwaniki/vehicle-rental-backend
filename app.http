@@ -164,9 +164,9 @@ Content-Type: application/json
 
 {
     "fullName": "Kennedy Mwangi",
-    "email": "mwangiken128@gmail.com",
+    "email": "kennedymwaniki089@gmail.com",
     "contactPhone": "+1234567890",
-    "password": "12345678",
+    "password": "1234",
     "address": "123 Main St, Anytown, USA",
     "role": "admin"
 }
@@ -176,7 +176,7 @@ Content-Type: application/json
 
 {
     "fullName": "Kennedy Mwaniki",
-    "email": "mwanikikennedy@gmail.com",
+    "email": "kennedymwaniki089@gmail.com",
     "contactPhone": "+1234567890",
     "password": "12345678",
     "address": "123 Main St, Anytown, USA",

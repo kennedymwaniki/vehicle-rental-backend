@@ -44,6 +44,7 @@ export const updateBooking = async (c: Context) => {
     if (isNaN(id)) return c.text("Invalid ID", 400);
 
     const booking = await c.req.json();
+    console.log(booking);
     const searchedBooking = await getBookingById(id);
     if (searchedBooking == undefined) return c.text("Booking not found", 404);
 
