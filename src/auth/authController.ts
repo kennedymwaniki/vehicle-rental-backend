@@ -163,6 +163,7 @@ export const loginUser = async (c: Context) => {
           token,
           user: {
             id: foundUser.userId,
+            image: foundUser.image_url,
             fullName: foundUser.fullName,
             email: foundUser.email,
             role: foundUser.role,
