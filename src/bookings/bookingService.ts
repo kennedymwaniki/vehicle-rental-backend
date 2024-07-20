@@ -17,8 +17,6 @@ export const getBookingById = async (
 };
 
 export const createBookingService = async (booking: TIBooking) => {
-  booking.bookingDate = new Date(booking.bookingDate).toISOString();
-  booking.returnDate = new Date(booking.returnDate).toISOString();
   await db.insert(BookingsTable).values(booking);
   return booking;
 };
