@@ -28,6 +28,10 @@ export const updateBookingService = async (id: number, booking: TIBooking) => {
   if (booking.returnDate && typeof booking.returnDate !== "string") {
     booking.returnDate = new Date(booking.returnDate).toISOString();
   }
+  console.log(
+    "this is how the service gets the dates after convertion",
+    booking.returnDate
+  );
 
   await db
     .update(BookingsTable)
@@ -38,4 +42,5 @@ export const updateBookingService = async (id: number, booking: TIBooking) => {
 
 export const deleteBookingService = async (id: number) => {
   await db.delete(BookingsTable).where(eq(BookingsTable.bookingId, id));
+  return "Booking successfully deleted";
 };
