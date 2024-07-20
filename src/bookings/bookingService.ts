@@ -22,6 +22,17 @@ export const createBookingService = async (booking: TIBooking) => {
 };
 
 export const updateBookingService = async (id: number, booking: TIBooking) => {
+  console.log(
+    "Before conversion:",
+    typeof booking.bookingDate,
+    booking.bookingDate
+  );
+  console.log(
+    "Before conversion:",
+    typeof booking.returnDate,
+    booking.returnDate
+  );
+
   booking.bookingDate = new Date(booking.bookingDate).toISOString();
   booking.returnDate = new Date(booking.returnDate).toISOString();
   await db
