@@ -6,6 +6,7 @@ export const getVehiclesService = async () => {
   const vehicles = await db.query.VehiclesTable.findMany({
     columns: {
       vehicleId: true,
+      image_url: true,
       vehicleSpecsId: true,
       availability: true,
       rentalRate: true,

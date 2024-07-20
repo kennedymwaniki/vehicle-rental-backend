@@ -41,6 +41,7 @@ export const VehicleSpecificationsTable = pgTable("vehiclespecifications", {
 
 export const VehiclesTable = pgTable("vehicles", {
   vehicleId: serial("vehicle_id").primaryKey(),
+  image_url: text("imageUrl"),
   vehicleSpecsId: integer("vehicle_specId").references(
     () => VehicleSpecificationsTable.vehicleSpecId,
     { onDelete: "cascade" }
