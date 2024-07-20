@@ -21,17 +21,32 @@ export const createBookingService = async (booking: TIBooking) => {
   return booking;
 };
 
+// export const updateBookingService = async (id: number, booking: TIBooking) => {
+//   if (booking.bookingDate && typeof booking.bookingDate !== "string") {
+//     booking.bookingDate = new Date(booking.bookingDate).toISOString();
+//   }
+//   if (booking.returnDate && typeof booking.returnDate !== "string") {
+//     booking.returnDate = new Date(booking.returnDate).toISOString();
+//   }
+//   console.log(
+//     "this is how the service gets the dates after convertion",
+//     booking.returnDate
+//   );
+
+//   await db
+//     .update(BookingsTable)
+//     .set(booking)
+//     .where(eq(BookingsTable.bookingId, id));
+//   return booking;
+// };
+
 export const updateBookingService = async (id: number, booking: TIBooking) => {
-  if (booking.bookingDate && typeof booking.bookingDate !== "string") {
+  if (booking.bookingDate) {
     booking.bookingDate = new Date(booking.bookingDate).toISOString();
   }
-  if (booking.returnDate && typeof booking.returnDate !== "string") {
+  if (booking.returnDate) {
     booking.returnDate = new Date(booking.returnDate).toISOString();
   }
-  console.log(
-    "this is how the service gets the dates after convertion",
-    booking.returnDate
-  );
 
   await db
     .update(BookingsTable)

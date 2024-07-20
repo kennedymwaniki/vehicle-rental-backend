@@ -37,19 +37,44 @@ export const createBooking = async (c: Context) => {
   }
 };
 
+// export const updateBooking = async (c: Context) => {
+//   try {
+//     const id = parseInt(c.req.param("id"));
+//     console.log("bookingController:", id);
+//     if (isNaN(id)) return c.text("Invalid ID", 400);
+
+//     const booking = await c.req.json();
+//     console.log("This the booking the controller gets", booking);
+
+//     if (booking.bookingDate && typeof booking.bookingDate !== "string") {
+//       booking.bookingDate = new Date(booking.bookingDate).toISOString();
+//     }
+//     if (booking.returnDate && typeof booking.returnDate !== "string") {
+//       booking.returnDate = new Date(booking.returnDate).toISOString();
+//     }
+
+//     const searchedBooking = await getBookingById(id);
+//     if (searchedBooking == undefined) return c.text("Booking not found", 404);
+
+//     const res = await updateBookingService(id, booking);
+//     if (!res) return c.text("Booking not updated", 404);
+
+//     return c.json({ msg: res }, 201);
+//   } catch (error: any) {
+//     return c.json({ error: error?.message }, 400);
+//   }
+// };
+
 export const updateBooking = async (c: Context) => {
   try {
     const id = parseInt(c.req.param("id"));
-    console.log("bookingController:", id);
     if (isNaN(id)) return c.text("Invalid ID", 400);
 
     const booking = await c.req.json();
-    console.log("This the booking the controller gets", booking);
-
-    if (booking.bookingDate && typeof booking.bookingDate !== "string") {
+    if (booking.bookingDate) {
       booking.bookingDate = new Date(booking.bookingDate).toISOString();
     }
-    if (booking.returnDate && typeof booking.returnDate !== "string") {
+    if (booking.returnDate) {
       booking.returnDate = new Date(booking.returnDate).toISOString();
     }
 
