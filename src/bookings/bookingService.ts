@@ -22,22 +22,13 @@ export const createBookingService = async (booking: TIBooking) => {
 };
 
 export const updateBookingService = async (id: number, booking: TIBooking) => {
-  console.log(
-    "Before conversion:",
-    typeof booking.bookingDate,
-    booking.bookingDate
-  );
-  console.log(
-    "Before conversion:",
-    typeof booking.returnDate,
-    booking.returnDate
-  );
+  if (booking.bookingDate && typeof booking.bookingDate !== "string") {
+    booking.bookingDate = new Date(booking.bookingDate).toISOString();
+  }
+  if (booking.returnDate && typeof booking.returnDate !== "string") {
+    booking.returnDate = new Date(booking.returnDate).toISOString();
+  }
 
-  booking.bookingDate = new Date(booking.bookingDate).toISOString();
-  booking.returnDate = new Date(booking.returnDate).toISOString();
-
-  console.log("After conversion:", booking.bookingDate);
-  console.log("After conversion:", booking.returnDate);
   await db
     .update(BookingsTable)
     .set(booking)
