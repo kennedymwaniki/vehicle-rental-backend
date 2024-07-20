@@ -35,6 +35,9 @@ export const updateBookingService = async (id: number, booking: TIBooking) => {
 
   booking.bookingDate = new Date(booking.bookingDate).toISOString();
   booking.returnDate = new Date(booking.returnDate).toISOString();
+
+  console.log("After conversion:", booking.bookingDate);
+  console.log("After conversion:", booking.returnDate);
   await db
     .update(BookingsTable)
     .set(booking)
