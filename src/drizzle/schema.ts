@@ -81,8 +81,8 @@ export const BookingsTable = pgTable("bookings", {
     () => LocationsTable.locationId,
     { onDelete: "cascade" }
   ),
-  bookingDate: timestamp("booking_date", { mode: "string" }).defaultNow(),
-  returnDate: timestamp("return_date", { mode: "string" }).defaultNow(),
+  bookingDate: date("booking_date", { mode: "string" }),
+  returnDate: date("return_date", { mode: "string" }),
   totalAmount: decimal("total_amount").notNull(),
   bookingStatus: bookingStatusEnum("booking_status")
     .default("Pending")
