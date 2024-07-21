@@ -1,11 +1,11 @@
 {
-  "id": "81e59264-6670-4a91-a4c9-99fa89dc971d",
+  "id": "5ade79eb-2289-4ab8-8836-8e2dde776ad6",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.authentication": {
-      "name": "authentication",
+    "public.auth_users": {
+      "name": "auth_users",
       "schema": "",
       "columns": {
         "auth_id": {
@@ -19,6 +19,20 @@
           "type": "integer",
           "primaryKey": false,
           "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "role": {
+          "name": "role",
+          "type": "role",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'user'"
         },
         "password": {
           "name": "password",
@@ -43,9 +57,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "authentication_user_id_users_user_id_fk": {
-          "name": "authentication_user_id_users_user_id_fk",
-          "tableFrom": "authentication",
+        "auth_users_user_id_users_user_id_fk": {
+          "name": "auth_users_user_id_users_user_id_fk",
+          "tableFrom": "auth_users",
           "tableTo": "users",
           "columnsFrom": [
             "user_id"
@@ -58,7 +72,15 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "auth_users_email_unique": {
+          "name": "auth_users_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      }
     },
     "public.bookings": {
       "name": "bookings",
@@ -90,15 +112,17 @@
         },
         "booking_date": {
           "name": "booking_date",
-          "type": "date",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false,
+          "default": "now()"
         },
         "return_date": {
           "name": "return_date",
-          "type": "date",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false,
+          "default": "now()"
         },
         "total_amount": {
           "name": "total_amount",
@@ -390,7 +414,7 @@
         },
         "amount": {
           "name": "amount",
-          "type": "numeric",
+          "type": "integer",
           "primaryKey": false,
           "notNull": true
         },
@@ -470,6 +494,12 @@
           "type": "varchar",
           "primaryKey": false,
           "notNull": true
+        },
+        "imageUrl": {
+          "name": "imageUrl",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "email": {
           "name": "email",
@@ -611,6 +641,12 @@
           "primaryKey": true,
           "notNull": true
         },
+        "imageUrl": {
+          "name": "imageUrl",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
         "vehicle_specId": {
           "name": "vehicle_specId",
           "type": "integer",
@@ -689,7 +725,8 @@
       "schema": "public",
       "values": [
         "user",
-        "admin"
+        "admin",
+        "both"
       ]
     }
   },

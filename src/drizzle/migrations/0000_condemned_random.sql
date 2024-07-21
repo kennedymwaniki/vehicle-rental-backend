@@ -11,17 +11,20 @@ EXCEPTION
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- CREATE TYPE "public"."role" AS ENUM('user', 'admin');
+ CREATE TYPE "public"."role" AS ENUM('user', 'admin', 'both');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "authentication" (
+CREATE TABLE IF NOT EXISTS "auth_users" (
 	"auth_id" serial PRIMARY KEY NOT NULL,
 	"user_id" integer,
+	"email" varchar,
+	"role" "role" DEFAULT 'user',
 	"password" varchar NOT NULL,
 	"created_at" timestamp DEFAULT now(),
-	"updated_at" timestamp DEFAULT now()
+	"updated_at" timestamp DEFAULT now(),
+	CONSTRAINT "auth_users_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "bookings" (
@@ -29,8 +32,8 @@ CREATE TABLE IF NOT EXISTS "bookings" (
 	"user_id" integer,
 	"vehicle_id" integer,
 	"location_id" integer,
-	"booking_date" date NOT NULL,
-	"return_date" date NOT NULL,
+	"booking_date" timestamp DEFAULT now(),
+	"return_date" timestamp DEFAULT now(),
 	"total_amount" numeric NOT NULL,
 	"booking_status" "booking_status" DEFAULT 'Pending' NOT NULL,
 	"created_at" timestamp DEFAULT now(),
@@ -71,7 +74,7 @@ CREATE TABLE IF NOT EXISTS "locations" (
 CREATE TABLE IF NOT EXISTS "payments" (
 	"payment_id" serial PRIMARY KEY NOT NULL,
 	"booking_id" integer,
-	"amount" numeric NOT NULL,
+	"amount" integer NOT NULL,
 	"payment_status" "payment_status" DEFAULT 'Pending' NOT NULL,
 	"payment_date" timestamp DEFAULT now(),
 	"payment_method" varchar,
@@ -83,6 +86,7 @@ CREATE TABLE IF NOT EXISTS "payments" (
 CREATE TABLE IF NOT EXISTS "users" (
 	"user_id" serial PRIMARY KEY NOT NULL,
 	"full_name" varchar NOT NULL,
+	"imageUrl" text,
 	"email" varchar NOT NULL,
 	"password" varchar,
 	"contact_phone" varchar,
@@ -108,6 +112,7 @@ CREATE TABLE IF NOT EXISTS "vehiclespecifications" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "vehicles" (
 	"vehicle_id" serial PRIMARY KEY NOT NULL,
+	"imageUrl" text,
 	"vehicle_specId" integer,
 	"rental_rate" numeric NOT NULL,
 	"availability" boolean DEFAULT true,
@@ -116,7 +121,7 @@ CREATE TABLE IF NOT EXISTS "vehicles" (
 );
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "authentication" ADD CONSTRAINT "authentication_user_id_users_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("user_id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "auth_users" ADD CONSTRAINT "auth_users_user_id_users_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("user_id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

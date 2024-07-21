@@ -5,71 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1719946141569,
-      "tag": "0000_brown_carlie_cooper",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1720076236484,
-      "tag": "0001_steady_falcon",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1720076335611,
-      "tag": "0002_empty_dark_phoenix",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1720082854790,
-      "tag": "0003_heavy_dark_beast",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1720521270091,
-      "tag": "0004_lame_polaris",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1721443220577,
-      "tag": "0005_plain_firedrake",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1721459450093,
-      "tag": "0006_lowly_rockslide",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1721536026815,
-      "tag": "0007_fuzzy_emma_frost",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1721536736308,
-      "tag": "0008_huge_shiver_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "7",
-      "when": 1721537401588,
-      "tag": "0009_tiresome_quasimodo",
+      "when": 1721565451169,
+      "tag": "0000_condemned_random",
       "breakpoints": true
     }
   ]
