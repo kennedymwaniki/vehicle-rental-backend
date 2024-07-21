@@ -2,6 +2,15 @@
 GET http://localhost:3000/api/users/4
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
 
+###
+PUT http://localhost:3000/api/users/4
+Content-Type: application/json
+
+{
+
+"fullName": "mily Brown"
+
+}
 
 
 //! all userrelations
@@ -42,7 +51,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlr
 Content-Type: application/json
 
 {
-    "FullName": "John Doe",
+    "FullName": "John David",
     "role":"admin"
 }
 
@@ -58,6 +67,21 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlr
 ###
 GET http://localhost:3000/api/bookings
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
+###
+
+
+
+
+###
+PUT http://localhost:3000/api/bookings/8
+Content-Type: application/json
+
+{
+  "locationId":5,
+   "bookingStatus": "Completed"
+}
+
+
 ###
 DELETE  http://localhost:3000/api/bookings/3
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlraTA4OUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjA4ODEwMDJ9.JGVsW6NdRNUxYvgPfsdtMrGiZUadJH2XR5mwZFCqAF8
