@@ -22,13 +22,6 @@ export const createBookingService = async (booking: TIBooking) => {
 };
 
 export const updateBookingService = async (id: number, booking: TIBooking) => {
-  // if (booking.bookingDate && typeof booking.bookingDate !== "string") {
-  //   booking.bookingDate = new Date(booking.bookingDate).toISOString();
-  // }
-  // if (booking.returnDate && typeof booking.returnDate !== "string") {
-  //   booking.returnDate = new Date(booking.returnDate).toISOString();
-  // }
-
   await db
     .update(BookingsTable)
     .set(booking)
