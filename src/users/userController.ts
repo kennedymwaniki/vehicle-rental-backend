@@ -8,6 +8,7 @@ import {
   getAllUserRelationsById,
   getUserSupportTicketsById,
 } from "./userService";
+import bcrypt from "bcrypt";
 
 import { type Context } from "hono";
 
@@ -51,6 +52,10 @@ export const updateUser = async (c: Context) => {
     // search for the user
     const searchedUser = await getUserById(id);
     if (searchedUser == undefined) return c.text("User not found", 404);
+
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    user.password = hashedPassword;
+
     // get the data and update it
     const res = await updateUserService(id, user);
     // return a success message
