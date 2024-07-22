@@ -73,12 +73,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrZW5uZWR5bXdhbmlr
 
 
 ###
-PUT http://localhost:3000/api/bookings/8
+PUT http://localhost:3000/api/bookings/9
 Content-Type: application/json
 
 {
   "locationId":5,
-   "bookingStatus": "Completed"
+   "bookingStatus": "Completed",
+  "bookingDate": "2024-07-23",
+    "returnDate": "2028-08-08"
 }
 
 

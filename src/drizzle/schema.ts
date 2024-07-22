@@ -87,8 +87,8 @@ export const BookingsTable = pgTable("bookings", {
   bookingStatus: bookingStatusEnum("booking_status")
     .default("Pending")
     .notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at", { mode: "string" }).defaultNow(),
+  updatedAt: timestamp("updated_at", { mode: "string" }).defaultNow(),
 });
 
 // payment Enum (['Pending', 'Completed', 'Failed']
