@@ -11,6 +11,19 @@ export const getVehiclesService = async () => {
       availability: true,
       rentalRate: true,
     },
+    with: {
+      vehicleSpec: {
+        columns: {
+          color: true,
+          model: true,
+          year: true,
+          seatingCapacity: true,
+          manufacturer: true,
+          fuelType: true,
+          engineCapacity: true,
+        },
+      },
+    },
   });
   return vehicles;
 };
