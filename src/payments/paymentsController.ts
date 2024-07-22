@@ -88,7 +88,7 @@ export const createPayment = {
 
       console.log(session);
 
-      // await paymentService.handleSuccessfulPayment(session.id);
+      await paymentService.handleSuccessfulPayment(session.id);
       return c.json({
         success: true,
         sessionId: session.id,
