@@ -110,8 +110,8 @@ export const PaymentsTable = pgTable("payments", {
   paymentDate: timestamp("payment_date", { mode: "string" }).defaultNow(),
   paymentMethod: varchar("payment_method"),
   transactionId: varchar("transaction_id"),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  createdAt: timestamp("created_at", { mode: "string" }).defaultNow(),
+  updatedAt: timestamp("updated_at",{ mode: "string" }).defaultNow(),
 });
 
 export const AuthUsersTable = pgTable("auth_users", {
