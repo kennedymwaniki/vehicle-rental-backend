@@ -55,7 +55,6 @@ export const updateUser = async (c: Context) => {
 
     const hashedPassword = await bcrypt.hash(user.password, 10);
     user.password = hashedPassword;
-
     // get the data and update it
     const res = await updateUserService(id, user);
     // return a success message
