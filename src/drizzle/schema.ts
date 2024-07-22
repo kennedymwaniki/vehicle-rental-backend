@@ -107,7 +107,7 @@ export const PaymentsTable = pgTable("payments", {
   paymentStatus: paymentStatusEnum("payment_status")
     .default("Pending")
     .notNull(),
-  paymentDate: timestamp("payment_date").defaultNow(),
+  paymentDate: timestamp("payment_date", { mode: "string" }).defaultNow(),
   paymentMethod: varchar("payment_method"),
   transactionId: varchar("transaction_id"),
   createdAt: timestamp("created_at").defaultNow(),
