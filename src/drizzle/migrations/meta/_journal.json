@@ -15,6 +15,13 @@
       "when": 1721566646944,
       "tag": "0001_famous_shockwave",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1721763392247,
+      "tag": "0002_shocking_newton_destine",
+      "breakpoints": true
     }
   ]
 }
