@@ -65,7 +65,6 @@ export const logInAuthService = async (user: TSAuthUsers) => {
     const authUser = await db.query.UsersTable.findFirst({
       columns: {
         userId: true,
-        image_url: true,
         role: true,
         fullName: true,
         email: true,
