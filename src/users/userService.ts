@@ -24,7 +24,7 @@ export const getUsersService = async () => {
     columns: {
       userId: true,
       fullName: true,
-      image_url:true,
+      image:true,
       role: true,
       email: true,
       address: true,
