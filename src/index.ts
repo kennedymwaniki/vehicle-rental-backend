@@ -17,9 +17,12 @@ app.get("/", (c) => {
   return c.text("Hello Hono!");
 });
 
+app.use(cors());
+
 app.use(
   cors({
     origin: "*", // specify your frontend URL
+    credentials: true,
     allowMethods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
