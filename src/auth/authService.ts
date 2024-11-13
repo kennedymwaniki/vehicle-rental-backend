@@ -6,7 +6,8 @@ import {
   TSAuthUsers,
   AuthUsersTable,
   UsersTable,
-  vehicleRelations,
+
+  
 } from "../drizzle/schema";
 import { sql } from "drizzle-orm";
 

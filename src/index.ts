@@ -34,7 +34,7 @@ app.route("/api", vehicleSpecsRouter);
 app.route("/api", customerSupportRouter);
 app.route("/api/auth", authRouter);
 
-const port = 3000;
+const port = 8000;
 console.log(`Server is running on port ${port}`);
 
 serve({
